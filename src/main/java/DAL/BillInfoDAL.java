@@ -37,13 +37,7 @@ public class BillInfoDAL {
     }
     public void insertBillInfo(int bill_id, int food_id, int count_food){
         ResultSet rs = null;
-        try{
-            String query = String.format("INSERT INTO `bill_info` (`bill_info_id`, `bill_id`, `food_id`, `count_food`) VALUES (NULL, %d, %d, %d);",bill_id,food_id,count_food);
-            
-            rs = DataProvider.resultset(query, false);
-
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
+        String query = String.format("INSERT INTO `bill_info` (`bill_info_id`, `bill_id`, `food_id`, `count_food`) VALUES (NULL, %d, %d, %d);",bill_id,food_id,count_food);
+        rs = DataProvider.resultset(query, false);
     }
 }

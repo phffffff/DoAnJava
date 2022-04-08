@@ -1,0 +1,7 @@
+/target/
+/build/
+/build.xml
+/text.txt
+/manifest.mf
+/.idea/
+/nbproject/
