@@ -45,7 +45,7 @@ public class ManageForm extends javax.swing.JFrame {
     private void initTitleTableList(){
         model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{
-            "M� b�n","B�n","Tr?ng th�i"
+            "M� b�n","B�n","Tr?ng th�i"
         });
         tblTableManage.setModel(model);
         
@@ -53,7 +53,7 @@ public class ManageForm extends javax.swing.JFrame {
     private void initTitletblBill(){
         model_1 = new DefaultTableModel();
         model_1.setColumnIdentifiers(new String[]{
-            "T�n m�n","Gi�","S? l??ng","Th�nh ti?n"
+            "T�n m�n","Gi�","S? l??ng","Th�nh ti?n"
         });
         tblBill.setModel(model_1);
         
@@ -248,7 +248,7 @@ public class ManageForm extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
-        jMenuItem2.setText("�?ăng xuất");
+        jMenuItem2.setText("�?ăng xuất");
         jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
@@ -308,7 +308,7 @@ public class ManageForm extends javax.swing.JFrame {
                 txtTotalPrice.setText(String.valueOf(detailBillDAL.total_price()));
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Vui lòng thoát chương trình và ch�?n lại","Lỗi",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Vui lòng thoát chương trình và chọn lại","Lỗi",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_tblTableManageMouseClicked
 

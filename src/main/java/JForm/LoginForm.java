@@ -114,7 +114,7 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        btnExit.setText("Thoát");
+        btnExit.setText("Thoï¿½t");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -169,7 +169,7 @@ public class LoginForm extends javax.swing.JFrame {
             f.show();
         }
         else{
-            JOptionPane.showMessageDialog(this, "Sai tài kho?n ho?c m?t kh?u", "L?i", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sai tï¿½i kho?n ho?c m?t kh?u", "L?i", JOptionPane.ERROR_MESSAGE);
         }    
     }//GEN-LAST:event_btnLoginActionPerformed
 
