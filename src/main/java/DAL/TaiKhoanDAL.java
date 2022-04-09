@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAL;
-import DTO.AccountDTO;
-import connection.ConnectionDatabase;
+import DTO.*;
+import DataProvider.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,22 +17,21 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mizuk
  */
-public class AccountDAL {
-    List <AccountDTO> listAccount = new ArrayList <AccountDTO>();
+public class TaiKhoanDAL {
+    List <TaiKhoanDTO> listAccount = new ArrayList <TaiKhoanDTO>();
     public void getDataFromMySql(){
-        ResultSet rs = null;
         try{
             String query = "SELECT * FROM `tai_khoan`";
             
-            rs = DataProvider.resultset(query,true);
+            ResultSet rs = DataProvider.connect(query, true);
             
             while(rs.next()){
-                AccountDTO data = new AccountDTO(
-                    rs.getInt("idAccount"),
-                    rs.getString("user_name"),
-                    rs.getString("display_name"),
-                    rs.getString("password"),
-                    rs.getInt("type")
+                TaiKhoanDTO data = new TaiKhoanDTO(
+                    rs.getInt("ma_tai_khoan"),
+                    rs.getString("ten_tai_khoan"),
+                    rs.getString("ten_hien_thi"),
+                    rs.getString("mat_khau"),
+                    rs.getInt("phan_quyen")
                 );
                 listAccount.add(data);
             }
@@ -44,17 +43,16 @@ public class AccountDAL {
         while(model.getRowCount() > 0){
             model.removeRow(0);
         }
-        for (AccountDTO accountDTO : listAccount) {
-            model.addRow(new Object[]{accountDTO.getIdAccount() ,accountDTO.getUsername(),accountDTO.getDisplayName(),accountDTO.getPassword(),accountDTO.getType()});
+        for (TaiKhoanDTO accountDTO : listAccount) {
+            model.addRow(new Object[]{accountDTO.getMa_tai_khoan(),accountDTO.getTen_tai_khoan(),accountDTO.getTen_hien_thi(),accountDTO.getMat_khau(),accountDTO.getPhan_quyen()});
         }
         model.fireTableDataChanged();
     }
     public boolean login(String username, String password){
-        ResultSet rs = null;
         try{
-            String query = "SELECT * FROM `tai_khoan` WHERE username = '"+username+"' AND password = '"+password+"'";
+            String query = "SELECT * FROM `tai_khoan` WHERE ten_tai_khoan = '"+username+"' AND mat_khau = '"+password+"'";
             
-            rs = DataProvider.resultset(query, true);
+            ResultSet rs =  DataProvider.connect(query, true);
             
             if(rs.next()){
                 return true;

@@ -1,7 +1,7 @@
 package JForm;
 
 import DAL.*;
-import connection.ConnectionDatabase;
+import DataProvider.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
@@ -46,8 +46,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("ĐĂNG NHẬP");
+        jLabel1.setText("??NG NH?P");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,10 +72,10 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel3.setText("Password");
 
         txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtUsername.setText("k1709");
+        txtUsername.setText("kien");
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtPassword.setText("0");
+        txtPassword.setText("1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -107,14 +106,14 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        btnLogin.setText("Đăng nhập");
+        btnLogin.setText("??ng nh?p");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
 
-        btnExit.setText("Thoát");
+        btnExit.setText("Tho�t");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -159,17 +158,17 @@ public class LoginForm extends javax.swing.JFrame {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
         
-        AccountDAL accountDAL = new AccountDAL();
+        TaiKhoanDAL taiKhoanDAL = new TaiKhoanDAL();
         
-//                    ManageForm f = new ManageForm();
-//            f.show();
+//        ManageForm f = new ManageForm();
+//        f.show();
         
-        if(accountDAL.login(username, password) == true){
+        if(taiKhoanDAL.login(username, password) == true){
             ManageForm f = new ManageForm();
             f.show();
         }
         else{
-            JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sai t�i kho?n ho?c m?t kh?u", "L?i", JOptionPane.ERROR_MESSAGE);
         }    
     }//GEN-LAST:event_btnLoginActionPerformed
 

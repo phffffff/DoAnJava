@@ -4,10 +4,9 @@
  */
 package JForm;
 
-import DAL.AccountDAL;
-import DAL.DataProvider;
-import DTO.AccountDTO;
-import connection.ConnectionDatabase;
+import DAL.*;
+import DataProvider.*;
+import DTO.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -989,15 +988,15 @@ public class AdminForm extends javax.swing.JFrame {
 
     void initTitleTableList(){
         model = new DefaultTableModel();
-        String []title = {"Username","DisplayName","Password","Type"};
+        String []title = {"Mã tài kho?n","Tên tài kho?n","Tên hi?n th?","M?t kh?u","Phan quy?n"};
         model.setColumnIdentifiers(title);
         tblAccount.setModel(model);
     }
     
     void loadAccountList(){
-        AccountDAL accountDAL = new AccountDAL();
-        accountDAL.getDataFromMySql();
-        accountDAL.loadDataToTablelist(model);
+        TaiKhoanDAL taiKhoanDAL = new TaiKhoanDAL();
+        taiKhoanDAL.getDataFromMySql();
+        taiKhoanDAL.loadDataToTablelist(model);
     }
 
     private void loadFoodList() {

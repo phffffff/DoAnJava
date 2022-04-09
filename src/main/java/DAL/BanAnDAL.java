@@ -4,33 +4,32 @@
  */
 package DAL;
 
-import DTO.AccountDTO;
-import DTO.TableDTO;
+import DTO.*;
+import DataProvider.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import connection.ConnectionDatabase;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author mizuk
  */
-public class TableDAL {
-    List <TableDTO> listTable = new ArrayList<TableDTO>();
+public class BanAnDAL {
+    List <BanAnDTO> listTable = new ArrayList<BanAnDTO>();
     public void getDataFromMySql(){
-        ResultSet rs = null;
+
         try{
-            String query = "SELECT * FROM `table_food`";
+            String query = "SELECT * FROM `ban_an`";
             
-            rs = DataProvider.resultset(query, true);
+            ResultSet rs  = DataProvider.connect(query, true);
             
             while(rs.next()){
-                TableDTO data = new TableDTO(
-                    rs.getInt("table_id"),
-                    rs.getString("table_name"),
-                    rs.getInt("status")
+                BanAnDTO data = new BanAnDTO(
+                    rs.getInt("ma_ban"),
+                    rs.getString("ban"),
+                    rs.getInt("trang_thai")
                 );
                 listTable.add(data);
             }
@@ -42,8 +41,8 @@ public class TableDAL {
         while(model.getRowCount() > 0){
             model.removeRow(0);
         }
-        for (TableDTO tableDTO : listTable) {
-            model.addRow(new Object[]{tableDTO.getTable_id(),tableDTO.getTable_name(),(tableDTO.getStatus() == 1 ? "Có người":"Bàn trống")});
+        for (BanAnDTO banAnDTO : listTable) {
+            model.addRow(new Object[]{banAnDTO.getMa_ban(),banAnDTO.getBan(),(banAnDTO.getTrang_thai()== 1 ? "C� ng??i":"B�n tr?ng")});
         }
         model.fireTableDataChanged();
     }

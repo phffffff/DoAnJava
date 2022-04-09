@@ -6,6 +6,7 @@ package DAL;
 
 
 import DTO.*;
+import DataProvider.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.ResultSet;
@@ -16,19 +17,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mizuk
  */
-public class CategoryDAL {
-    List <CategoryFoodDTO> listCategory = new ArrayList<CategoryFoodDTO>();
+public class LoaiMonDAL {
+    List <LoaiMonDTO> listCategory = new ArrayList<LoaiMonDTO>();
     
     public void getDataFromMySql(){
-        ResultSet rs = null;
         try{
-            String query = "SELECT * FROM `food_category` ORDER BY category_id ASC;";
+            String query = "SELECT * FROM `loai_thuc_an` ORDER BY ma_loai ASC;";
             
-            rs = DataProvider.resultset(query, true);
+            ResultSet rs = DataProvider.connect(query, true);
             while(rs.next()){
-                listCategory.add(new CategoryFoodDTO(
-                        rs.getInt("category_id"),
-                        rs.getString("category_name")
+                listCategory.add(new LoaiMonDTO(
+                        rs.getInt("ma_loai"),
+                        rs.getString("ten_loai")
                 ));
             }
         }catch(SQLException e){
@@ -39,8 +39,8 @@ public class CategoryDAL {
         while(cbxCategory.getItemCount() > 0){
             cbxCategory.removeItemAt(0);
         }
-        for (CategoryFoodDTO categoryFoodDTO : listCategory) {
-            cbxCategory.addItem(categoryFoodDTO.getCategory_name());
+        for (LoaiMonDTO loaiMonDTO : listCategory) {
+            cbxCategory.addItem(loaiMonDTO.getTen_loai());
         }
     }
 }

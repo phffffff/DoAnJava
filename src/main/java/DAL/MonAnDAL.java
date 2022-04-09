@@ -4,9 +4,9 @@
  */
 package DAL;
 
-import DTO.BillInfoDTO;
+import DTO.*;
+import DataProvider.*;
 import java.util.List;
-import DTO.FoodDTO;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,35 +16,35 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mizuk
  */
-public class FoodDAL {
-    List <FoodDTO> listFood = new ArrayList<FoodDTO>();
-    List <FoodDTO> listFoodName = new ArrayList<FoodDTO>();
+public class MonAnDAL {
+    List <MonAnDTO> listFood = new ArrayList<MonAnDTO>();
+    List <MonAnDTO> listFoodName = new ArrayList<MonAnDTO>();
     public void getDataFromMySql(){
-        ResultSet rs = null;
         try{
-            String query = "SELECT * FROM `food` ORDER BY food_id ASC";
+            String query = "SELECT * FROM `mon_an` ORDER BY ma_mon ASC";
             
-            rs = DataProvider.resultset(query, true);
+            ResultSet rs =  DataProvider.connect(query, true);
             while(rs.next()){
-                listFood.add(new FoodDTO(
-                    rs.getInt("food_id"),
-                    rs.getString("food_name"),
-                    rs.getInt("category_id")
+                listFood.add(new MonAnDTO(
+                    rs.getInt("ma_mon"),
+                    rs.getString("ten_mon"),
+                    rs.getInt("loai"),
+                    rs.getInt("so_luong"),
+                    rs.getInt("gia")                        
                 ));
             }
         }catch(SQLException e){
             e.printStackTrace();
         }        
     }
-    public void getFoodNameFromCategoryId(int category_id){
-        ResultSet rs = null;
+    public void getFoodNameFromCategoryId(int ma_loai){
         try{
-            String query = "SELECT * FROM `food` WHERE category_id = "+category_id;
+            String query = "SELECT * FROM `mon_an` WHERE loai = "+ma_loai;
             
-            rs = DataProvider.resultset(query, true);
+            ResultSet rs =  DataProvider.connect(query, true);
             while(rs.next()){
-                listFoodName.add(new FoodDTO(
-                    rs.getString("food_name")
+                listFoodName.add(new MonAnDTO(
+                    rs.getString("ten_mon")
                 ));
             }
         }catch(SQLException e){
@@ -55,8 +55,8 @@ public class FoodDAL {
         while(cbxFood.getItemCount() > 0){
             cbxFood.removeItemAt(0);
         }
-        for (FoodDTO foodDTO : listFoodName) {
-            cbxFood.addItem(foodDTO.getFood_name());
+        for (MonAnDTO monAnDTO : listFoodName) {
+            cbxFood.addItem(monAnDTO.getTen_mon());
         }
     }
 

@@ -6,7 +6,6 @@ package JForm;
 
 import DAL.*;
 import javax.swing.table.DefaultTableModel;
-import  DAL.TableDAL;
 import java.util.List;
 import java.util.Locale;
 import javax.swing.JOptionPane;
@@ -20,33 +19,33 @@ public class ManageForm extends javax.swing.JFrame {
     DefaultTableModel model_1 = null;
     
     public ManageForm() {
-        FoodDAL foodDAL = new FoodDAL();
+        MonAnDAL monAnDAL = new MonAnDAL();
         initComponents();
         initTitleTableList();
         initTitletblBill();
         listCategory();
-        foodDAL.getFoodNameFromCategoryId(1);
-        foodDAL.loadFoodToCombobox(cbxFood);
+        monAnDAL.getFoodNameFromCategoryId(1);
+        monAnDAL.loadFoodToCombobox(cbxFood);
         LoadTableList();
     }
     private void listFoodName(){
-        FoodDAL foodDAL = new FoodDAL();
+        MonAnDAL monAnDAL = new MonAnDAL();
         int idx = cbxCategory.getSelectedIndex() + 1;
         if(idx > 0){
             System.out.println(idx);
-            foodDAL.getFoodNameFromCategoryId(idx);
-            foodDAL.loadFoodToCombobox(cbxFood);
+            monAnDAL.getFoodNameFromCategoryId(idx);
+            monAnDAL.loadFoodToCombobox(cbxFood);
         }
     }
     private void listCategory(){
-        CategoryDAL categoryDAL = new CategoryDAL();
-        categoryDAL.getDataFromMySql();
-        categoryDAL.loadListCategoryToCombobox(cbxCategory);
+        LoaiMonDAL loaiMonDAL = new LoaiMonDAL();
+        loaiMonDAL.getDataFromMySql();
+        loaiMonDAL.loadListCategoryToCombobox(cbxCategory);
     }
     private void initTitleTableList(){
         model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{
-            "table_id","table_name","status"
+            "M� b�n","B�n","Tr?ng th�i"
         });
         tblTableManage.setModel(model);
         
@@ -54,18 +53,18 @@ public class ManageForm extends javax.swing.JFrame {
     private void initTitletblBill(){
         model_1 = new DefaultTableModel();
         model_1.setColumnIdentifiers(new String[]{
-            "food_name","price","food_count","total"
+            "T�n m�n","Gi�","S? l??ng","Th�nh ti?n"
         });
         tblBill.setModel(model_1);
         
     }
     private void LoadTableList() {
-        TableDAL tableDAL = new TableDAL();
-        tableDAL.getDataFromMySql();
-        tableDAL.loadDataToTablelist(model);
+        BanAnDAL banAnDAL = new BanAnDAL();
+        banAnDAL.getDataFromMySql();
+        banAnDAL.loadDataToTablelist(model);
     }
     private void addFood(){
-        int food_id = cbxFood.getSelectedIndex();
+//        int food_id = cbxFood.getSelectedIndex();
 //        int count_food = spnCount.getValue();
         
     }
@@ -249,7 +248,7 @@ public class ManageForm extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
-        jMenuItem2.setText("Đăng xuất");
+        jMenuItem2.setText("�?ăng xuất");
         jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
@@ -299,7 +298,7 @@ public class ManageForm extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxCategoryMouseEntered
 
     private void tblTableManageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTableManageMouseClicked
-        DetailBillDAL detailBillDAL = new DetailBillDAL();
+        HoaDonHienThiDAL detailBillDAL = new HoaDonHienThiDAL();
         try{
             int click = tblTableManage.getSelectedRow();
             if(click >= 0){
@@ -309,7 +308,7 @@ public class ManageForm extends javax.swing.JFrame {
                 txtTotalPrice.setText(String.valueOf(detailBillDAL.total_price()));
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Vui lòng thoát chương trình và chọn lại","Lỗi",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Vui lòng thoát chương trình và ch�?n lại","Lỗi",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_tblTableManageMouseClicked
 
