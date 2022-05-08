@@ -11,11 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-/**
- *
- * @author mizuk
- */
 public class DataProvider {
     private static final String url = "jdbc:mysql://localhost:3306/do_an_java";
     private static final String user = "root";
