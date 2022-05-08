@@ -387,6 +387,7 @@ public class ManageForm extends javax.swing.JFrame {
 //            while(model_1.getRowCount() > 0){
 //                model_1.removeRow(0);
 //            }
+//đâsdasd
             
         }
     }//GEN-LAST:event_tblFoodManageMouseClicked
