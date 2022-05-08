@@ -1,3 +1,8 @@
+DeadLine 8h
+
+lịch họp 8h30 - 10h.
+
+
 H.Kiên
 - mon_an
 - loai_an
