@@ -10,10 +10,17 @@ package DTO;
  */
 public class MonAnDTO {
 
+    public String getMa_mon() {
+        return ma_mon;
+    }
 
-    private int ma_mon;
+    public void setMa_mon(String ma_mon) {
+        this.ma_mon = ma_mon;
+    }
+
+
+    private String ma_mon;
     private String ten_mon;
-    private int loai;
     private int so_luong;
     private int gia;
     
@@ -24,20 +31,11 @@ public class MonAnDTO {
         this.ten_mon = ten_mon;
     }
  
-    public MonAnDTO(int ma_mon, String ten_mon, int loai, int so_luong, int gia) {
+    public MonAnDTO(String ma_mon, String ten_mon, int so_luong, int gia) {
         this.ma_mon = ma_mon;
         this.ten_mon = ten_mon;
-        this.loai = loai;
         this.so_luong = so_luong;
         this.gia = gia;
-    }
-
-    public int getMa_mon() {
-        return ma_mon;
-    }
-
-    public void setMa_mon(int ma_mon) {
-        this.ma_mon = ma_mon;
     }
 
     public String getTen_mon() {
@@ -46,14 +44,6 @@ public class MonAnDTO {
 
     public void setTen_mon(String ten_mon) {
         this.ten_mon = ten_mon;
-    }
-
-    public int getLoai() {
-        return loai;
-    }
-
-    public void setLoai(int loai) {
-        this.loai = loai;
     }
 
     public int getSo_luong() {

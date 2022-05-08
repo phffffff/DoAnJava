@@ -7,9 +7,12 @@ package DAL;
 import java.util.List;
 import DTO.*;
 import DataProvider.*;
+import java.sql.Date;
+//import java.util.Date;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -17,7 +20,7 @@ import java.sql.SQLException;
  */
 public class HoaDonDAL {
     List <HoaDonDTO> listBill = new ArrayList<HoaDonDTO>();
-    public  void getDataFromMySql(){
+    public  List<HoaDonDTO> getData(){
         try{
             String query = "SELECT * FROM `hoa_don`";
             
@@ -26,7 +29,6 @@ public class HoaDonDAL {
                 listBill.add(new HoaDonDTO(
                     rs.getInt("ma_hoa_don"),
                     rs.getDate("ngay_xuat"),
-                    rs.getInt("trang_thai"),
                     rs.getInt("ma_nhan_vien"),
                     rs.getString("ma_thanh_vien"),
                     rs.getInt("ma_ban"),
@@ -37,23 +39,25 @@ public class HoaDonDAL {
                     rs.getInt("diem")                     
                 ));
             }
+            return listBill;
         }catch(SQLException e){
             e.printStackTrace();
+            return null;
         }
     }
     //lấy BillId từ những Bill đã chưa checkout (status = 0)
-    public int getBillIdNoCheckout(int ma_ban){
+    public void addData(String []arr, int []num){
+        long millis=System.currentTimeMillis();
+        Date date = new Date(millis);
+        int s = 0;
+        String query = "INSERT INTO `hoa_don`(`ma_hoa_don`, `ngay_xuat`, `ma_nhan_vien`, `ma_thanh_vien`, `tong_tien`, `tien_giam`, `tien_con_lai`, `ma_phieu_giam_gia`, `diem`) "
+        + "VALUES (NULL,'"+date+"','"+arr[0]+"','"+arr[1]+"','"+num[0]+"','"+num[1]+"','"+(num[0]-num[1])+"','"+arr[1]+"','"+num[2]+"')";
         
-        try{
-            String query = "SELECT ma_hoa_don FROM `hoa_don` WHERE trang_thai = "+0+" AND ma_ban = "+ma_ban;
-            
-            ResultSet rs = DataProvider.connect(query, true);
-            
-            return rs.getInt("ma_hoa_don");
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        return -1;
+        DataProvider.connect(query, false);
+    }
+    public void delData(int ma_hoa_don){
+        String query = "DELETE FROM `hoa_don` WHERE `ma_hoa_don` = '"+ ma_hoa_don+"'";
+        DataProvider.connect(query, false);
     }
 }
 

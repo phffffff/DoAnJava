@@ -14,7 +14,6 @@ public class HoaDonDTO {
     
     private int ma_hoa_don;
     private Date ngay_xuat;
-    private int trang_thai;
     private int ma_nhan_vien;
     private String ma_thanh_vien;
     private int ma_ban;
@@ -24,10 +23,9 @@ public class HoaDonDTO {
     private String ma_phieu_giam_gia;
     private int diem;
     
-    public HoaDonDTO(int ma_hoa_don, Date ngay_xuat, int trang_thai, int ma_nhan_vien, String ma_thanh_vien, int ma_ban, int tong_tien, int tien_giam, int tien_con_lai, String ma_phieu_giam_gia, int diem) {
+    public HoaDonDTO(int ma_hoa_don, Date ngay_xuat, int ma_nhan_vien, String ma_thanh_vien, int ma_ban, int tong_tien, int tien_giam, int tien_con_lai, String ma_phieu_giam_gia, int diem) {
         this.ma_hoa_don = ma_hoa_don;
         this.ngay_xuat = ngay_xuat;
-        this.trang_thai = trang_thai;
         this.ma_nhan_vien = ma_nhan_vien;
         this.ma_thanh_vien = ma_thanh_vien;
         this.ma_ban = ma_ban;
@@ -103,14 +101,6 @@ public class HoaDonDTO {
 
     public void setNgay_xuat(Date ngay_xuat) {
         this.ngay_xuat = ngay_xuat;
-    }
-
-        public int getTrang_thai() {
-        return trang_thai;
-    }
-
-    public void setTrang_thai(int trang_thai) {
-        this.trang_thai = trang_thai;
     }
 
 

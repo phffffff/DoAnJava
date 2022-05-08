@@ -9,24 +9,14 @@ package DTO;
  * @author mizuk
  */
 public class LoaiMonDTO {
-
-    private int ma_loai;
+    private String ma_loai;
     private String ten_loai;
     
-    public LoaiMonDTO(){
-    }
-
-    public LoaiMonDTO(int ma_loai, String ten_loai) {
-        this.ma_loai = ma_loai;
-        this.ten_loai = ten_loai;
-    }
-
-    
-    public int getMa_loai() {
+    public String getMa_loai() {
         return ma_loai;
     }
 
-    public void setMa_loai(int ma_loai) {
+    public void setMa_loai(String ma_loai) {
         this.ma_loai = ma_loai;
     }
 
@@ -38,7 +28,12 @@ public class LoaiMonDTO {
         this.ten_loai = ten_loai;
     }
 
-    
+    public LoaiMonDTO() {
+    }
 
+    public LoaiMonDTO(String ma_loai, String ten_loai) {
+        this.ma_loai = ma_loai;
+        this.ten_loai = ten_loai;
+    }
     
 }

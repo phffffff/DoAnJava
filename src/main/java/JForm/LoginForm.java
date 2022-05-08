@@ -1,5 +1,6 @@
 package JForm;
 
+import BLL.TaiKhoanBLL;
 import DAL.*;
 import DataProvider.*;
 import java.sql.Connection;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author mizuk
  */
 public class LoginForm extends javax.swing.JFrame {
-
+    TaiKhoanBLL taiKhoanBLL = new TaiKhoanBLL();
     /**
      * Creates new form dangnhapform
      */
@@ -70,10 +71,8 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel3.setText("Password");
 
         txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtUsername.setText("kien");
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtPassword.setText("1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -154,19 +153,17 @@ public class LoginForm extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         
         String username = txtUsername.getText();
-        String password = txtPassword.getText();
+        String password = String.valueOf(txtPassword.getPassword());
         
-        TaiKhoanDAL taiKhoanDAL = new TaiKhoanDAL();
+//        TaiKhoanDAL taiKhoanDAL = new TaiKhoanDAL();
         
-//        ManageForm f = new ManageForm();
-//        f.show();
-        
-        if(taiKhoanDAL.login(username, password) == true){
+        if(taiKhoanBLL.login(username, password) == true){
             ManageForm f = new ManageForm();
-            f.show();
+            f.setVisible(true);
         }
         else{
-            JOptionPane.showMessageDialog(this, "Sai t�i kho?n ho?c m?t kh?u", "L?i", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
         }    
     }//GEN-LAST:event_btnLoginActionPerformed
 
